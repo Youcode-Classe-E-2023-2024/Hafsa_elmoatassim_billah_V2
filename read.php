@@ -15,7 +15,7 @@
         outline: 0;
         }
        .title{
-        background-color: #ba68c8;
+        background-color: rgb(89, 89, 167);
         height: 100px;
        }
        .title h1{
@@ -26,26 +26,20 @@
         letter-spacing: 7px;
         font-family: 'Montserrat', sans-serif;
        }
-        .filter{
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        z-index: 1;
-        background: rgb(233,76,161);
-        background: -moz-linear-gradient(90deg, rgba(233,76,161,1) 0%, rgba(199,74,233,1) 100%);
-        background: -webkit-linear-gradient(90deg, rgba(233,76,161,1) 0%, rgba(199,74,233,1) 100%);
-        background: linear-gradient(90deg, rgba(233,76,161,1) 0%, rgba(199,74,233,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e94ca1",endColorstr="#c74ae9",GradientType=1);
-        opacity: .7;
-        }
+       .addAnn button{
+        background-color: rgb(89, 89, 167);
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 15px;
+        color: #fff;
+
+       }
+        
         table{
-        position: absolute;
+        position: relative;
         z-index: 2;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
+        margin: 30px auto;
         width: 60%; 
         border-collapse: collapse;
         border-spacing: 0;
@@ -65,7 +59,7 @@
         }
 
         th{
-        background-color: #ba68c8;
+        background-color: rgb(89, 89, 167);
         color: #fafafa;
         font-family: 'Open Sans',Sans-serif;
         font-weight: 200;
@@ -80,20 +74,51 @@
         tr:nth-child(even){
         background-color: #eeeeee;
         }
+       
+        /* Basic styling for the buttons */
+        .main-button {
+            background-color: rgb(89, 89, 167);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .delete-button{
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .update-button {
+            background-color: rgb(37, 37, 155);
+            color: #fff;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-   <div class="title"><h1>Announcement</h1></div> 
+    <div class="title"><h1>Announcement</h1> </div> 
+    <div class="addAnn"><a href="./index.php"><button>Add Annonce</button></a></div>
+   
 
    <!-- creating the table to insert the info -->
 <table>
     <thead>
         <tr>
         <th scope="col">#</th>
-        <th scope="col">firstname</th>
-        <th scope="col">lastname</th>
-        <th scope="col">email</th>
-        <th scope="col">categorie</th> 
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Categorie</th> 
+        <th scope="col" class="main-button">Operation</th> 
         </tr>
         <?php
             require "connection.php"; 
@@ -110,7 +135,10 @@
             <td><?php  echo $row['lastname'] ?></td>
             <td class="btn"><?php  echo $row['email'] ?></td>
             <td><?php  echo $row['catégorie'] ?></td>
+                <td><button class="delete-button">Delete</button>
+                <button class="update-button">Update</button></td>
             </tr>
+                
         </tbody>
         <?php }
             }

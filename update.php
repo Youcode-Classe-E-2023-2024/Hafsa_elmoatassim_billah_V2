@@ -30,8 +30,12 @@
         }
 
         .btn-primary {
-          background-color: rgb(89, 89, 167);
+          background-color: black;
           width: 100%;
+        }
+
+        .btn-primary:hover {
+          background-color: orangered;
         }
   </style>
 
