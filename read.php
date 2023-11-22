@@ -26,14 +26,15 @@
         letter-spacing: 7px;
         font-family: 'Montserrat', sans-serif;
        }
+    
        .addAnn button{
-        background-color: rgb(89, 89, 167);
+        background-color: rgb(102, 102, 177);
         border: none;
         border-radius: 10px;
-        padding: 10px;
-        margin: 15px;
+        padding: 1em;
+        margin-top: 25px;
         color: #fff;
-
+        margin-left: 23em;
        }
         
         table{
