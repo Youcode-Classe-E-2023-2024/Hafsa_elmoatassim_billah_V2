@@ -136,9 +136,10 @@
             <td><?php  echo $row['lastname'] ?></td>
             <td class="btn"><?php  echo $row['email'] ?></td>
             <td><?php  echo $row['catégorie'] ?></td>
-                <td><button class="delete-button">Delete</button>
-                <button class="update-button">Update</button></td>
+                <td><button class="delete-button" name="delete" > <a href="./delete.php?id=<?php echo $row['id']; ?>" style="color: #fafafa; text-decoration:none;">Delete</a></button>
+                <button class="update-button"><a href="./update.php?id=<?php echo $row["id"]; ?>" style="color: #fafafa; text-decoration:none;">Update</button></td>
             </tr>
+            
                 
         </tbody>
         <?php }

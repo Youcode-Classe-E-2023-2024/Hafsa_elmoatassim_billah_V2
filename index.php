@@ -10,6 +10,26 @@
         body {
           background-color: #f8f9fa;
         }
+        .form-button {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgb(89, 89, 167);
+            cursor: pointer;
+            margin-bottom: 10px;
+            margin: 10px;
+        }
+
+        .form-button a{
+          color: #ffffff;
+          text-decoration: none;
+        }
+
+        .loginbtn{
+          display: flex;
+          justify-content: end;
+          width: 100%;
+        }
 
         .container {
           max-width: 900px;
@@ -37,6 +57,10 @@
 
 </head>
 <body>
+  <div class="loginbtn">
+  <button class="form-button"><a href="./login.php">Login</a></button>
+  <button class="form-button"><a href="./signup.php">Sign Up</a></button>
+  </div>
    
 
 <div class="container mt-5">
@@ -76,4 +100,36 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>    
 </body>
 </html>
+<?php 
+
+// if (isset($_FILES['photo'])) {
+//     $img_name = $_FILES['photo']['name'];
+//     $tmp_name = $_FILES['photo']['tmp_name'];
+
+//     $img_exploide = explode('.', $img_name);
+//     $img_ext = end($img_exploide);
+
+//     $extensions = ['png', 'jpeg', 'jpg'];
+//     if (in_array($img_ext, $extensions) === true) {
+
+//         if (move_uploaded_file($tmp_name, "images/" . $img_name)) {
+            
+//             $stmt = $con->prepare("INSERT INTO users (img) VALUES (?)");
+//             $stmt->bind_param("s", $img_name);
+            
+//             if ($stmt->execute()) {
+//                     echo "dkchinadi";
+//             } else {
+//                 echo "Something went wrong, please retry later";
+            
+//             }
+//         } else {
+//             echo "Failed to move uploaded file";
+//         }
+//     } else {
+//         echo "Invalid photo format";
+//     }
+// } else {
+//     echo "Please upload a photo";
+// }
 
