@@ -139,10 +139,10 @@
                         <td><?php echo substr($row['confirm_password'], 0, 12) ; ?></td> 
                         <td>
                             <button class="delete-button">
-                                <a href="./delete.php?id=<?php echo $row['id']; ?>" style="color: #fafafa; text-decoration:none;">Delete</a>
+                                <a href="./deleteSp.php?id=<?php echo $row['id']; ?>" style="color: #fafafa; text-decoration:none;">Delete</a>
                             </button>
                             <button class="update-button">
-                                <a href="./update.php?id=<?php echo $row["id"]; ?>" style="color: #fafafa; text-decoration:none;">Update</a>
+                                <a href="./updateSp.php?id=<?php echo $row["id"]; ?>" style="color: #fafafa; text-decoration:none;">Update</a>
                             </button>
                         </td>
                     </tr>
