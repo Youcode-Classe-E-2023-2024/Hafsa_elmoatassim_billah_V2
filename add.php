@@ -1,26 +1,31 @@
 <?php
-require "connection.php";
-    // This checks if the form was submitted using the HTTP POST method.
-if  ($_SERVER["REQUEST_METHOD"] == "POST"){
+include "connection.php";
 
-    // submitted through the POST method from the form fields and assigns them to variables.
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $pwd = $_POST['password'];
-    $category = $_POST['catégorie'];
+// Create connection
+$conn = new mysqli($host, $username, $password, $database);
 
-    // It constructs an SQL query for inserting data into the 'contact' table. 
-    $sql = "INSERT INTO contact (firstName, lastName, email, password, catégorie) VALUES ('$firstname', '$lastname', '$email', '$pwd', '$category')";
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-    // It executes the SQL query using the mysqli_query function. 
-    if (mysqli_query($conn, $sql)) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = isset($_POST['title']) ? $_POST['title'] : '';
+    $description = isset($_POST['description']) ? $_POST['description'] : '';
+    $price = isset($_POST['price']) ? $_POST['price'] : '';
+    $category = isset($_POST['category']) ? $_POST['category'] : '';
+
+    $sql = "INSERT INTO contact (title, description, price, category) VALUES ('$title', '$description', $price, '$category')";
+
+    if ($conn->query($sql)) {
         echo "Records added successfully.";
-        header("location: read.php");  
+        header("location: read.php");
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-    // It closes the MySQL database connection using the mysqli_close function. 
-    mysqli_close($conn);
+
+// Close the connection
+$conn->close();
 ?>
+

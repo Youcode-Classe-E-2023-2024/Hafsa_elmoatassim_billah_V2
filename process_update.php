@@ -3,23 +3,31 @@ require 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
     $id = $_POST['id'];
-    $newFirstName = $_POST['new_firstname'];
-    $newLastName = $_POST['new_lastname'];
-    $newEmail = $_POST['new_email'];
+    $newTitle = $_POST['new_title'];
+    $newDescription = $_POST['new_description'];
+    $newPrice = $_POST['new_price'];
     $newCategory = $_POST['new_category'];
 
-    $sql = "UPDATE contact SET 
-            firstname='$newFirstName', 
-            lastname='$newLastName', 
-            email='$newEmail', 
-            catégorie='$newCategory' 
-            WHERE id=$id";
-    if ($conn->query($sql) === TRUE) {
-        echo "Announcement updated successfully";
-        // Redirect back to the read.php page after a short delay
-        echo '<meta http-equiv="refresh" content="2;url=read.php">';
-    } else {
-        echo "Error updating announcement: " . $conn->error;
+    // Ensure the connection is open
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
+
+    // Construct the SQL query for updating data in the 'contact' table
+    $sql = "UPDATE contact SET title='$newTitle', description='$newDescription', price='$newPrice', category='$newCategory' WHERE id=$id";
+
+    // Execute the SQL query
+    if ($conn->query($sql) === TRUE) {
+        // Record updated successfully, redirect to home
+        header("location: read.php");
+        exit(); // Ensure no further code is executed after redirection
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+
+    // Close the database connection
+    $conn->close();
 }
 ?>

@@ -67,29 +67,26 @@
     <h2>Create an Announcement</h2>
 
     <form action="add.php" method="post"> 
+    <label for="title">Title</label>
+    <input type="text" class="form-control" name="title" required>
+
       <div class="mb-3">
-        <label for="firstname" class="form-label">Firstname</label>
-        <input type="text" class="form-control" name="firstname" required>
+        <label for="description" class="form-label">Description</label>
+        <textarea type="text" class="form-control" name="description" required></textarea>
       </div>
+
       <div class="mb-3">
-        <label for="lastname" class="form-label">Lastname</label>
-        <input type="text" class="form-control" name="lastname" required>
+        <label for="lastname" class="form-label">Price</label>
+        <input type="text" class="form-control"  placeholder="$$" name="price" required>
       </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input class="form-control" name="email" type="email" required></input>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input class="form-control" name="pwd" type="password" required></input>
-      </div>
+
       <div class="mb-3">
         <label for="category" class="form-label">Category</label>
         <select class="form-select" name="category" required>
           <option value="" disabled selected>Select a category</option>
-          <option value="announcement">Electronique</option>
-          <option value="event">Logement</option>
-          <option value="sale">Voiture</option>
+          <option value="Electronique">Electronique</option>
+          <option value="Logement">Logement</option>
+          <option value="Voiture">Voiture</option>
         </select>
       </div>
       <button type="submit" class="btn btn-primary" name="submit">Submit</button>
@@ -101,35 +98,3 @@
 </body>
 </html>
 <?php 
-
-// if (isset($_FILES['photo'])) {
-//     $img_name = $_FILES['photo']['name'];
-//     $tmp_name = $_FILES['photo']['tmp_name'];
-
-//     $img_exploide = explode('.', $img_name);
-//     $img_ext = end($img_exploide);
-
-//     $extensions = ['png', 'jpeg', 'jpg'];
-//     if (in_array($img_ext, $extensions) === true) {
-
-//         if (move_uploaded_file($tmp_name, "images/" . $img_name)) {
-            
-//             $stmt = $con->prepare("INSERT INTO users (img) VALUES (?)");
-//             $stmt->bind_param("s", $img_name);
-            
-//             if ($stmt->execute()) {
-//                     echo "dkchinadi";
-//             } else {
-//                 echo "Something went wrong, please retry later";
-            
-//             }
-//         } else {
-//             echo "Failed to move uploaded file";
-//         }
-//     } else {
-//         echo "Invalid photo format";
-//     }
-// } else {
-//     echo "Please upload a photo";
-// }
-
