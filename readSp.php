@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>read page</title>
+    <title>usersignup page</title>
 
 <!-- le tableau qui affiche les info -->
     <style>
@@ -41,7 +40,7 @@
         position: relative;
         z-index: 2;
         margin: 30px auto;
-        width: 60%; 
+        max-width:700px; 
         border-collapse: collapse;
         border-spacing: 0;
         box-shadow: 0 2px 15px rgba(64,64,64,.7);
@@ -106,26 +105,26 @@
     </style>
 </head>
 <body>
-<div class="title"><h1>Announcement</h1></div>
-    <div class="addAnn"><a href="./index.php"><button>Add Annonce</button></a></div>
 
     <!-- creating the table to insert the info -->
     <table>
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Titre d'Annonce</th>
-                <th scope="col">Description</th>
-                <th scope="col">Price</th>
-                <th scope="col">Category</th>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Confirm_Password</th>
                 <th scope="col" class="main-button">Operation</th>
             </tr>
         </thead>
         <tbody>
+            
             <?php
             require "connection.php";
 
-            $sql = "SELECT * FROM contact";
+            $sql = "SELECT * FROM users";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -133,10 +132,11 @@
                     ?>
                     <tr>
                         <th scope="row"><?php echo $row['id']; ?></th>
-                        <td><?php echo $row['title']; ?></td>
-                        <td><?php echo $row['description']; ?></td>
-                        <td><?php echo $row['price']; ?></td>
-                        <td><?php echo $row['category']; ?></td>
+                        <td><?php echo $row['firstname']; ?></td>
+                        <td><?php echo $row['lastname']; ?></td>
+                        <td><?php echo $row['email']; ?></td>
+                        <td><?php echo substr($row['password'], 0, 12) ; ?></td>  
+                        <td><?php echo substr($row['confirm_password'], 0, 12) ; ?></td> 
                         <td>
                             <button class="delete-button">
                                 <a href="./delete.php?id=<?php echo $row['id']; ?>" style="color: #fafafa; text-decoration:none;">Delete</a>
@@ -149,11 +149,9 @@
                     <?php
                 }
             } else {
-                echo "<tr><td colspan='6'>No announcements found</td></tr>";
+                echo "<tr><td colspan='6'>No user found</td></tr>";
             }
 
-            // Close the connection
-            $conn->close();
             ?>
         </tbody>
     </table>
