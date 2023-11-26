@@ -6,7 +6,7 @@ $password = '';
 $database = 'contactinfo';
 
 // Create connection
-$conn = new mysqli($host, $username, $password);
+$conn = new mysqli($host, $username, $password ,$database);
 
 // Check connection
 if ($conn->connect_error) {
