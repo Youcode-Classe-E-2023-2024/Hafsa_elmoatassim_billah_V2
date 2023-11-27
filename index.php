@@ -58,11 +58,10 @@
 </head>
 <body>
   <div class="loginbtn">
-  <button class="form-button"><a href="./login.php">Login</a></button>
-  <button class="form-button"><a href="./signup.php">Sign Up</a></button>
+    <button class="form-button"><a href="./login.php">Login</a></button>
+    <button class="form-button"><a href="./signup.php">Sign Up</a></button>
   </div>
-   
-
+  
 <div class="container mt-5">
     <h2>Create an Announcement</h2>
 

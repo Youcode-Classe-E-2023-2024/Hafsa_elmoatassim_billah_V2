@@ -114,8 +114,9 @@
                 <th scope="col">Firstname</th>
                 <th scope="col">Lastname</th>
                 <th scope="col">Email</th>
-                <th scope="col">Password</th>
-                <th scope="col">Confirm_Password</th>
+                <th scope="col">Role</th>
+                <!-- <th scope="col">Password</th>
+                <th scope="col">Confirm_Password</th> -->
                 <th scope="col" class="main-button">Operation</th>
             </tr>
         </thead>
@@ -135,8 +136,9 @@
                         <td><?php echo $row['firstname']; ?></td>
                         <td><?php echo $row['lastname']; ?></td>
                         <td><?php echo $row['email']; ?></td>
-                        <td><?php echo substr($row['password'], 0, 12) ; ?></td>  
-                        <td><?php echo substr($row['confirm_password'], 0, 12) ; ?></td> 
+                        <!-- <td><?php echo substr($row['password'], 0, 12) ; ?></td>  
+                        <td><?php echo substr($row['confirm_password'], 0, 12) ; ?></td>  -->
+                        <td><?php echo $row['role']; ?></td>
                         <td>
                             <button class="delete-button">
                                 <a href="./deleteSp.php?id=<?php echo $row['id']; ?>" style="color: #fafafa; text-decoration:none;">Delete</a>

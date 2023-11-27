@@ -29,11 +29,12 @@ $hashed_password2 = password_hash($confirm_password, PASSWORD_DEFAULT);
 $sql = "INSERT INTO users (firstname, lastname, email, password , confirm_password, role) VALUES ('$firstname', '$lastname', '$email', '$hashed_password' , '$hashed_password2' , '$role')";
 
 if ($conn->query($sql)) {
-    // echo "Account created successfully";
-
+    echo "User added successfully.";
+    header("location: readSp.php");
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
+
 
 $conn->close();
 
