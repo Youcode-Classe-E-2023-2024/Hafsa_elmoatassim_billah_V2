@@ -83,6 +83,7 @@ if (isset($_POST['logout'])) {
 <body>
   <form method="post">
     <div class="loginbtn" class="logout">
+      <button  class="form-button"><a href="home.php">See the Annouces</a></button>
       <button name="logout" for="logout" class="form-button">Logout</button>
     </div>
   </form>

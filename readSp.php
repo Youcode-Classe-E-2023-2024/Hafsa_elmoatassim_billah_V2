@@ -123,7 +123,9 @@
         <tbody>
             
             <?php
+
             require "connection.php";
+            session_start();
 
             $sql = "SELECT * FROM users";
             $result = $conn->query($sql);
@@ -140,12 +142,19 @@
                         <td><?php echo substr($row['confirm_password'], 0, 12) ; ?></td>  -->
                         <td><?php echo $row['role']; ?></td>
                         <td>
-                            <button class="delete-button">
-                                <a href="./deleteSp.php?id=<?php echo $row['id']; ?>" style="color: #fafafa; text-decoration:none;">Delete</a>
-                            </button>
-                            <button class="update-button">
-                                <a href="./updateSp.php?id=<?php echo $row["id"]; ?>" style="color: #fafafa; text-decoration:none;">Update</a>
-                            </button>
+                        <?php
+                            if ( $_SESSION['role']  == 'admin') {
+                                echo "<button class='delete-button'>";
+                                echo "<a href='./deleteSp.php?id=" . $row['id'] . "' style='color: #fafafa; text-decoration:none;'>Delete</a>";
+                                echo "</button>";
+                                echo "<button class='update-button'>";
+                                echo "<a href='./updateSp.php?id=" . $row['id'] . "' style='color: #fafafa; text-decoration:none;'>Update</a>";
+                                echo "</button>";
+                            } else{
+                                echo "-";
+                            }
+
+                            ?>
                         </td>
                     </tr>
                     <?php

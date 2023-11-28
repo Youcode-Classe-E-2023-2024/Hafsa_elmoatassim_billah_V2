@@ -9,24 +9,22 @@ if (isset($_POST['submit'])) {
     $password = $_POST["password"];
 
     $query = "SELECT * FROM users WHERE email = '$email'";
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($conn, $query); //run
 
     if ($result->num_rows > 0) {
         $user = mysqli_fetch_assoc($result);
 
         if (password_verify($password, $user['password'])) {
 
-            
+
             $_SESSION["id"] = $user['id'];
             $_SESSION["email"] = $user['email'];
-            $_SESSION["role"] = $user['role'];
+            $_SESSION['role'] = $user['role'];
 
             header("Location: annonce.php");
         }
     }
 }
-
-
 
 
 ?>
