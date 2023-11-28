@@ -1,99 +1,166 @@
+<?php
+
+session_start();
+
+include 'connection.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Annonce</title>
-    
+    <title>read page</title>
+
+<!-- le tableau qui affiche les info -->
     <style>
-        body {
-          background-color: #f8f9fa;
+        @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+        *{
+        margin:0;
+        padding: 0;
+        outline: 0;
         }
-        .form-button {
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
+       .title{
+        background-color: rgb(89, 89, 167);
+        height: 100px;
+       }
+       .title h1{
+        display: flex;
+        justify-content: center;
+        padding-top: 1em;
+        color: #fafafa ;
+        letter-spacing: 7px;
+        font-family: 'Montserrat', sans-serif;
+       }
+    
+       .addAnn button{
+        background-color: rgb(102, 102, 177);
+        border: none;
+        border-radius: 10px;
+        padding: 1em;
+        margin-top: 25px;
+        color: #fff;
+        margin-left: 23em;
+       }
+        
+        table{
+        position: relative;
+        z-index: 2;
+        margin: 30px auto;
+        width: 60%; 
+        border-collapse: collapse;
+        border-spacing: 0;
+        box-shadow: 0 2px 15px rgba(64,64,64,.7);
+        border-radius: 12px 12px 0 0;
+        overflow: hidden;
+
+        }
+        td , th{
+        padding: 15px 20px;
+        text-align: center;
+
+        }
+
+        .btn{
+            background-color: rgba(117, 117, 244, 0.342);
+        }
+
+        th{
+        background-color: rgb(89, 89, 167);
+        color: #fafafa;
+        font-family: 'Open Sans',Sans-serif;
+        font-weight: 200;
+        text-transform: uppercase;
+
+        }
+        tr{
+        width: 100%;
+        background-color: #fafafa;
+        font-family: 'Montserrat', sans-serif;
+        }
+        tr:nth-child(even){
+        background-color: #eeeeee;
+        }
+       
+        /* Basic styling for the buttons */
+        .main-button {
             background-color: rgb(89, 89, 167);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
             cursor: pointer;
-            margin-bottom: 10px;
-            margin: 10px;
         }
 
-        .form-button a{
-          color: #ffffff;
-          text-decoration: none;
+        .delete-button{
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
-
-        .loginbtn{
-          display: flex;
-          justify-content: end;
-          width: 100%;
+        .update-button {
+            background-color: rgb(37, 37, 155);
+            color: #fff;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
-
-        .container {
-          max-width: 900px;
-          margin: 50px auto;
-          background-color: #ffffff;
-          padding: 20px;
-          border-radius: 8px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-          text-align: center;
-          padding: 1em;
-        }
-
-        label {
-          font-weight: bold;
-        }
-
-        .btn-primary {
-          background-color: rgb(89, 89, 167);
-          width: 100%;
-        }
-  </style>
-
+    </style>
 </head>
 <body>
-  <div class="loginbtn">
-    <button class="form-button"><a href="./login.php">Login</a></button>
-    <button class="form-button"><a href="./signup.php">Sign Up</a></button>
-  </div>
-  
-<div class="container mt-5">
-    <h2>Create an Announcement</h2>
+<div class="title"><h1>Announcement</h1></div>
+    <div class="addAnn"><a href="./login.php"><button>Add Annonce</button></a></div>
 
-    <form action="add.php" method="post"> 
-    <label for="title">Title</label>
-    <input type="text" class="form-control" name="title" required>
+    <!-- creating the table to insert the info -->
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titre d'Annonce</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Category</th>
+                <th scope="col" class="main-button">Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
 
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea type="text" class="form-control" name="description" required></textarea>
-      </div>
+            $sql = "SELECT * FROM contact";
+            $result = $conn->query($sql);
 
-      <div class="mb-3">
-        <label for="lastname" class="form-label">Price</label>
-        <input type="text" class="form-control"  placeholder="$$" name="price" required>
-      </div>
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    ?>
+                    <tr>
+                        <th scope="row"><?php echo $row['id']; ?></th>
+                        <td><?php echo $row['title']; ?></td>
+                        <td><?php echo $row['description']; ?></td>
+                        <td><?php echo $row['price']; ?></td>
+                        <td><?php echo $row['category']; ?></td>
+                        <td>
+                            <button class="delete-button">
+                                <a href="./delete.php?id=<?php echo $row['id']; ?>" style="color: #fafafa; text-decoration:none;">Delete</a>
+                            </button>
+                            <button class="update-button">
+                                <a href="./update.php?id=<?php echo $row["id"]; ?>" style="color: #fafafa; text-decoration:none;">Update</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <?php
+                }
+            } else {
+                echo "<tr><td colspan='6'>No announcements found</td></tr>";
+            }
 
-      <div class="mb-3">
-        <label for="category" class="form-label">Category</label>
-        <select class="form-select" name="category" required>
-          <option value="" disabled selected>Select a category</option>
-          <option value="Electronique">Electronique</option>
-          <option value="Logement">Logement</option>
-          <option value="Voiture">Voiture</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-    </form>
-
-</div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>    
+            // Close the connection
+            $conn->close();
+            ?>
+        </tbody>
+    </table>
 </body>
 </html>
-<?php 

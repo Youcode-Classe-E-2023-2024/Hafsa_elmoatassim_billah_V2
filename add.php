@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql)) {
         echo "Records added successfully.";
-        header("location: read.php");
+        header("location: index.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
     } else {
         echo "Error updating record: " . $conn->error;
     }
-
+    
     // Close the database connection
     $conn->close();
 }

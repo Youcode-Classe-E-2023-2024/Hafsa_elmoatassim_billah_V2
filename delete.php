@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
         // Execute the statement
         if ($stmt->execute()) {
             // Redirect after successful deletion
-            header("location: read.php");
+            header("location: index.php");
             exit;
         } else {
             echo "Error executing statement: " . $stmt->error;

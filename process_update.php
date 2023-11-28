@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
     // Execute the SQL query
     if ($conn->query($sql) === TRUE) {
         // Record updated successfully, redirect to home
-        header("location: read.php");
+        header("location: index.php");
         exit(); // Ensure no further code is executed after redirection
     } else {
         echo "Error updating record: " . $conn->error;
