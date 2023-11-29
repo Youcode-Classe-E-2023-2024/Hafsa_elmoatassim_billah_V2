@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
         // Execute the statement
         if ($stmt->execute()) {
             // Redirect after successful deletion
-            header("location: index.php");
+            header("location: home.php");
             exit;
         } else {
             echo "Error executing statement: " . $stmt->error;
@@ -33,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     } else {
         echo "Error preparing statement: " . $conn->error;
     }
+
+    // header("Location: home.php");
 
     // Close the database connection
     $conn->close();
